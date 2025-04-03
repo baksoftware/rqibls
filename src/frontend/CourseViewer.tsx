@@ -1,25 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import { IEngine } from '../engine/IEngine';
 import { ICourse } from '../course/ICourse';
+import { StartPage } from './StartPage';
+import { CourseStepPage } from './CourseStepPage';
+import { CompletionPage } from './CompletionPage';
 
 interface CourseViewerProps {
     engine: IEngine;
     course: ICourse;
 }
 
+type Page = 'start' | 'course' | 'completion';
+
 export const CourseViewer: React.FC<CourseViewerProps> = ({ engine, course }) => {
+    const [currentPage, setCurrentPage] = useState<Page>('start');
     const [currentContent, setCurrentContent] = useState<any>(null);
     const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
     const [showFeedback, setShowFeedback] = useState<boolean>(false);
     const [correctAnswers, setCorrectAnswers] = useState<number>(0);
 
     useEffect(() => {
-        const stepId = engine.getCurrentStep();
-        const content = course.getStepContent(stepId);
-        setCurrentContent(content);
-        setSelectedAnswer(null);
-        setShowFeedback(false);
-    }, [engine, course]);
+        if (currentPage === 'course') {
+            const stepId = engine.getCurrentStep();
+            const content = course.getStepContent(stepId);
+            setCurrentContent(content);
+            setSelectedAnswer(null);
+            setShowFeedback(false);
+        }
+    }, [engine, course, currentPage]);
+
+    const handleStart = () => {
+        setCurrentPage('course');
+    };
 
     const handleAnswerSelect = (index: number) => {
         setSelectedAnswer(index);
@@ -36,6 +48,8 @@ export const CourseViewer: React.FC<CourseViewerProps> = ({ engine, course }) =>
             setCurrentContent(content);
             setSelectedAnswer(null);
             setShowFeedback(false);
+        } else {
+            setCurrentPage('completion');
         }
     };
 
@@ -49,56 +63,28 @@ export const CourseViewer: React.FC<CourseViewerProps> = ({ engine, course }) =>
         }
     };
 
-    if (!currentContent) {
-        return <div>Loading...</div>;
+    switch (currentPage) {
+        case 'start':
+            return <StartPage engine={engine} course={course} onStart={handleStart} />;
+        case 'course':
+            if (!currentContent) {
+                return <div>Loading...</div>;
+            }
+            return (
+                <CourseStepPage
+                    engine={engine}
+                    course={course}
+                    currentContent={currentContent}
+                    onAnswerSelect={handleAnswerSelect}
+                    onNext={handleNext}
+                    onPrevious={handlePrevious}
+                    selectedAnswer={selectedAnswer}
+                    showFeedback={showFeedback}
+                />
+            );
+        case 'completion':
+            return <CompletionPage course={course} correctAnswers={correctAnswers} />;
+        default:
+            return null;
     }
-
-    const isCompleted = engine.isCompleted();
-    console.log(`isCompleted: ${isCompleted}`);
-    if (isCompleted) {
-        return (
-            <div className="course-viewer">
-                <h2>Course Completed!</h2>
-                <div className="completion-summary">
-                    <p>You answered {correctAnswers} out of {course.getTotalSteps()} questions correctly.</p>
-                    <p>That's {Math.round((correctAnswers / course.getTotalSteps()) * 100)}% correct!</p>
-                </div>
-            </div>
-        );
-    }
-
-    return (
-        <div className="course-viewer">
-            <h2>{currentContent.question}</h2>
-            <div className="options">
-                {currentContent.options.map((option: string, index: number) => (
-                    <button
-                        key={index}
-                        onClick={() => handleAnswerSelect(index)}
-                        className={`option ${selectedAnswer === index ? 'selected' : ''}`}
-                    >
-                        {option}
-                    </button>
-                ))}
-            </div>
-            {showFeedback && (
-                <div className="feedback">
-                    {selectedAnswer === currentContent.correctAnswer
-                        ? "Correct! Well done!"
-                        : "Incorrect. Please try again."}
-                </div>
-            )}
-            <div className="navigation">
-                <button onClick={handlePrevious} disabled={!engine.previousStep()}>
-                    Previous
-                </button>
-                <button onClick={handleNext} disabled={!engine.nextStep()}>
-                    Next
-                </button>
-            </div>
-            <div className="progress">
-                Progress: {engine.getProgress()}%
-            </div>
-        </div>
-    );
 }; 
