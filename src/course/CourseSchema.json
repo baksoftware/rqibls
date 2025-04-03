@@ -27,7 +27,28 @@
                     },
                     "content": {
                         "type": "object",
-                        "description": "The content to display for this step"
+                        "required": ["question", "options", "correctAnswer", "image"],
+                        "properties": {
+                            "question": {
+                                "type": "string",
+                                "description": "The question to display"
+                            },
+                            "options": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                },
+                                "description": "The answer options"
+                            },
+                            "correctAnswer": {
+                                "type": "integer",
+                                "description": "The index of the correct answer"
+                            },
+                            "image": {
+                                "type": "string",
+                                "description": "The filename of the image to display (relative to the images folder)"
+                            }
+                        }
                     }
                 }
             }

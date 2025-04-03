@@ -31,17 +31,24 @@ export const CourseStepPage: React.FC<CourseStepPageProps> = ({
 
     return (
         <div className="course-viewer">
-            <h2>{currentContent.question}</h2>
-            <div className="options">
-                {currentContent.options.map((option: string, index: number) => (
-                    <button
-                        key={index}
-                        className={`option ${selectedAnswer === index ? 'selected' : ''}`}
-                        onClick={() => onAnswerSelect(index)}
-                    >
-                        {option}
-                    </button>
-                ))}
+            <div className="question-container">
+                <div className="question-image">
+                    <img src={`/images/${currentContent.image}`} alt="Question illustration" />
+                </div>
+                <div className="question-content">
+                    <h2>{currentContent.question}</h2>
+                    <div className="options">
+                        {currentContent.options.map((option: string, index: number) => (
+                            <button
+                                key={index}
+                                className={`option ${selectedAnswer === index ? 'selected' : ''}`}
+                                onClick={() => onAnswerSelect(index)}
+                            >
+                                {option}
+                            </button>
+                        ))}
+                    </div>
+                </div>
             </div>
             <div className="self-assessment">
                 <h3>How well do you know this?</h3>
