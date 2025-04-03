@@ -1,0 +1,43 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# e-learning Course
+
+This is an elearning course implemented as a single page React application.
+The application consist of the following parts
+
+# App
+- the main page for the app
+- instantiates the Engine, Frontend, and Course.
+- tell the Course to load the BLSCourse from a JSON file
+- the app is the only place where Engine, Frontend, Course, and BLSCourse gets connected by injection
+
+# Engine
+- has all source files in the `/src/engine` folder
+- has the one and only interface in `/src/engine/IEngine.ts`
+- decides which elearning step/page to show next
+- decides whether a learner completed or not
+- is implemented in pure Typescript without any libraries
+- does not include any other files than those in `/src/engine`
+- provides an interface to the Frontend in one typescript file
+- depends on the Course to provide it information about what course to show
+
+# Frontend
+- has all source files in the `/src/frontend` folder
+- show one page at a time
+- ask the Engine what next page to show, through the Engine interface
+
+# Course
+- has all source files in the `/src/course` folder
+- is access through an interface in `/src/course/ICourse.ts`
+- defines the JSON schema of a course in `/src/course/CourseSchema.json`
+- provides an interface that loads a course, forexample the BLSCourse
+
+# BLSCourse
+- has all source files in the `/src/bls-course` folder
+- contains only one JSON file and images
+- the JSON file implements the JSON scema defined in Course
+- implements the BLR course
+- contains the contents of the screenshots in `/doc/bls-course`
