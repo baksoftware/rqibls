@@ -16,79 +16,15 @@
             "title": "Initial Assessment",
             "content": {
                 "type": "multiple-choice",
-                "question": "Upon arriving at the scene, what is your first priority when you see someone who appears unresponsive?",
-                "imagePath": "images/female-hmm.png",
-                "options": [
-                    "Start chest compressions immediately",
-                    "Check for scene safety and call for help",
-                    "Give rescue breaths",
-                    "Look for identification"
-                ],
-                "correctAnswer": 1
-            }
-        },
-        {
-            "id": "step3",
-            "title": "Emergency Response",
-            "content": {
-                "type": "multiple-choice",
-                "question": "You've determined the scene is safe. What information should you check on your device before proceeding?",
+                "question": "The child is unresponsive after you tap his shoulders and shout, \"Are you OK?\" He could be in cardiac arrest.\n\nWhat is your next step?",
                 "imagePath": "images/female-scratch.png",
                 "options": [
-                    "Local weather conditions",
-                    "Emergency response protocols and algorithms",
-                    "Your work schedule",
-                    "Traffic conditions"
-                ],
-                "correctAnswer": 1
-            }
-        },
-        {
-            "id": "step4",
-            "title": "Scene Management",
-            "content": {
-                "type": "multiple-choice",
-                "question": "At this playground incident, what's your immediate action after ensuring personal safety?",
-                "imagePath": "images/scene.png",
-                "options": [
-                    "Take photos of the scene",
-                    "Interview bystanders",
-                    "Assess the victim and establish if they're responsive",
-                    "Set up a perimeter"
-                ],
-                "correctAnswer": 2
-            }
-        },
-        {
-            "id": "step5",
-            "title": "Response Planning",
-            "content": {
-                "type": "multiple-choice",
-                "question": "While assessing the situation, what should you be considering?",
-                "imagePath": "images/female-hmm.png",
-                "options": [
-                    "The need for additional resources and equipment",
-                    "Your dinner plans",
-                    "The weather forecast",
-                    "Your next shift schedule"
+                    "For 5 to 10 seconds, look for no breathing or only gasping while simultaneously checking the carotid pulse",
+                    "For 10 to 15 seconds, look for no breathing or only gasping while simultaneously checking the brachial pulse",
+                    "For 10 to 15 seconds, look for no breathing or only gasping while simultaneously checking the carotid pulse",
+                    "For 5 to 10 seconds, look for no breathing or only gasping while simultaneously checking the brachial pulse"
                 ],
                 "correctAnswer": 0
-            }
-        },
-        {
-            "id": "step6",
-            "title": "Documentation",
-            "content": {
-                "type": "multiple-choice",
-                "question": "What critical information should you record on your device during the incident?",
-                "imagePath": "images/female-scratch.png",
-                "options": [
-                    "Your personal notes",
-                    "Social media updates",
-                    "Vital signs and interventions performed",
-                    "Bystander contact information"
-                ],
-                "correctAnswer": 2
             }
         }
     ]
