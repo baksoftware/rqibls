@@ -4,16 +4,16 @@
     "steps": [
         {
             "id": "step1",
-            "title": "Chest Compressions",
+            "title": "Pediatric CPR",
             "content": {
                 "type": "multiple-choice",
-                "question": "What is the correct rate for chest compressions in adult CPR?",
+                "question": "You check the child's pulse after 2 minutes of providing rescue breaths and cannot feel a pulse. You immediately begin CPR. After performing CPR for 2 more minutes, the child still does not have a pulse and you are still alone. What is your next step?",
                 "imagePath": "images/image-single-rescuer-female-standing.png",
                 "options": [
-                    "60-80 compressions per minute",
-                    "100-120 compressions per minute",
-                    "140-160 compressions per minute",
-                    "180-200 compressions per minute"
+                    "Wait for advanced life support providers to arrive",
+                    "Get and use an AED",
+                    "Continue rescue breaths only",
+                    "Continue compressions"
                 ],
                 "correctAnswer": 1
             }
