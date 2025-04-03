@@ -61,6 +61,7 @@ export const CourseStepPage: React.FC<CourseStepPageProps> = ({
                         className={`assessment-button ${selfAssessment === 'know' ? 'selected' : ''}`}
                         onClick={() => handleSelfAssessment('know')}
                         disabled={selectedAnswer === null}
+                        data-assessment="know"
                     >
                         I know it
                     </button>
@@ -68,6 +69,7 @@ export const CourseStepPage: React.FC<CourseStepPageProps> = ({
                         className={`assessment-button ${selfAssessment === 'think' ? 'selected' : ''}`}
                         onClick={() => handleSelfAssessment('think')}
                         disabled={selectedAnswer === null}
+                        data-assessment="think"
                     >
                         Think I know it
                     </button>
@@ -75,6 +77,7 @@ export const CourseStepPage: React.FC<CourseStepPageProps> = ({
                         className={`assessment-button ${selfAssessment === 'unsure' ? 'selected' : ''}`}
                         onClick={() => handleSelfAssessment('unsure')}
                         disabled={selectedAnswer === null}
+                        data-assessment="unsure"
                     >
                         Not sure
                     </button>
@@ -82,6 +85,7 @@ export const CourseStepPage: React.FC<CourseStepPageProps> = ({
                         className={`assessment-button ${selfAssessment === 'noidea' ? 'selected' : ''}`}
                         onClick={() => handleSelfAssessment('noidea')}
                         disabled={selectedAnswer === null}
+                        data-assessment="noidea"
                     >
                         No idea
                     </button>

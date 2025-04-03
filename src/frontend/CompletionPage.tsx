@@ -52,9 +52,13 @@ export const CompletionPage: React.FC<CompletionPageProps> = ({ course, answerHi
                             <li key={answer.stepId} className={answer.isCorrect ? 'correct' : 'incorrect'}>
                                 <div className="answer-details">
                                     <span>Question {index + 1}: {answer.isCorrect ? '✓ Correct' : '✗ Incorrect'}</span>
-                                    <span className="self-assessment-badge">
-                                        Self-assessment: {getAssessmentText(answer.selfAssessment)}
-                                    </span>
+                                    <button 
+                                        className="self-assessment-badge"
+                                        data-assessment={answer.selfAssessment}
+                                        disabled
+                                    >
+                                        {getAssessmentText(answer.selfAssessment)}
+                                    </button>
                                 </div>
                             </li>
                         );
