@@ -13,7 +13,7 @@ export const InformationPage: React.FC<InformationPageProps> = ({
     onNext,
     progress,
 }) => {
-    return (
+    return (        
         <div className="course-viewer">
             <div className="question-container">
                 <div className="question-image">

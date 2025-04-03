@@ -9,7 +9,7 @@ interface StartPageProps {
 export const StartPage: React.FC<StartPageProps> = ({ course, onStart }) => {
     return (
         <div className="start-page">
-            <h1>Welcome to the Course</h1>
+            <h1>{course.getTitle()}</h1>
             <div className="course-info">
                 <p>This course contains {course.getTotalSteps()} steps to help you learn.</p>
                 <p>Click the button below to begin your learning journey!</p>

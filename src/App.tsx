@@ -51,7 +51,6 @@ function AppContent() {
 
   return (
     <div className="app">
-      <h1>Basic Life Support Course</h1>
       <CourseViewer 
         currentStep={currentStep}
         isCompleted={isCompleted}

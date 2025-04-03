@@ -11,6 +11,11 @@ export interface ICourse {
     getTotalSteps(): number;
 
     /**
+     * Get the title of the course
+     */
+    getTitle(): string;
+
+    /**
      * Get the content for a specific step
      * @param stepId The ID of the step to get content for
      */

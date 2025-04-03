@@ -72,6 +72,10 @@ export class Course implements ICourse {
         }
     }
 
+    getTitle(): string {
+        return this.courseData?.title || '';
+    }
+
     getTotalSteps(): number {
         return this.stepIds.length;
     }
