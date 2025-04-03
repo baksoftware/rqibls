@@ -1,13 +1,43 @@
 import { ICourse } from './ICourse';
 
+export enum PageType {
+    Next = 'information',
+    MultipleChoice = 'multiple-choice',
+    Completed = 'completed'
+}
+
+export interface MultipleChoiceContent {
+    type: PageType.MultipleChoice;
+    question: string;
+    imagePath?: string;
+    options: string[];
+    correctAnswer: number;
+}
+
+export interface InformationContent {
+    type: PageType.Next;
+    text: string;
+    imagePath?: string;
+}
+
+export interface CompletedContent {
+    type: PageType.Completed;
+    text: string;
+    imagePath?: string;
+}
+
+export type StepContent = MultipleChoiceContent | InformationContent | CompletedContent;
+
+export interface CourseStep {
+    id: string;
+    title: string;
+    content: StepContent;
+}
+
 export interface CourseData {
     title: string;
     description?: string;
-    steps: Array<{
-        id: string;
-        title: string;
-        content: any;
-    }>;
+    steps: CourseStep[];
 }
 
 export class Course implements ICourse {
@@ -35,7 +65,7 @@ export class Course implements ICourse {
                 throw new Error('Invalid course format: steps array is required');
             }
             this.courseData = data;
-            this.stepIds = data.steps.map((step: { id: string }) => step.id);
+            this.stepIds = data.steps.map((step: CourseStep) => step.id);
         } catch (error) {
             console.error('Failed to load course:', error);
             throw error;
@@ -46,7 +76,7 @@ export class Course implements ICourse {
         return this.stepIds.length;
     }
 
-    getStepContent(stepId: string): any {
+    getStepContent(stepId: string): StepContent {
         if (!this.courseData) {
             throw new Error('Course not loaded');
         }

@@ -4,34 +4,91 @@
     "steps": [
         {
             "id": "step1",
-            "title": "Pediatric CPR",
+            "title": "Introduction",
+            "content": {
+                "type": "information",
+                "text": "Dispatch calls you to respond to a family's home with a 7-year-old child. You are told that the child was found unresponsive in the backyard. The scene is safe upon arrival, and you enter with your AED (monitor/defibrillator).",
+                "imagePath": "images/scene.png"
+            }
+        },
+        {
+            "id": "step2",
+            "title": "Initial Assessment",
             "content": {
                 "type": "multiple-choice",
-                "question": "You check the child's pulse after 2 minutes of providing rescue breaths and cannot feel a pulse. You immediately begin CPR. After performing CPR for 2 more minutes, the child still does not have a pulse and you are still alone. What is your next step?",
-                "imagePath": "images/image-single-rescuer-female-standing.png",
+                "question": "Upon arriving at the scene, what is your first priority when you see someone who appears unresponsive?",
+                "imagePath": "images/female-hmm.png",
                 "options": [
-                    "Wait for advanced life support providers to arrive",
-                    "Get and use an AED",
-                    "Continue rescue breaths only",
-                    "Continue compressions"
+                    "Start chest compressions immediately",
+                    "Check for scene safety and call for help",
+                    "Give rescue breaths",
+                    "Look for identification"
                 ],
                 "correctAnswer": 1
             }
         },
         {
-            "id": "step2",
-            "title": "Rescue Breaths",
+            "id": "step3",
+            "title": "Emergency Response",
             "content": {
                 "type": "multiple-choice",
-                "question": "How many rescue breaths should be given after 30 chest compressions?",
-                "imagePath": "images/image-single-rescuer-male-standing.png",
+                "question": "You've determined the scene is safe. What information should you check on your device before proceeding?",
+                "imagePath": "images/female-scratch.png",
                 "options": [
-                    "1 breath",
-                    "2 breaths",
-                    "3 breaths",
-                    "4 breaths"
+                    "Local weather conditions",
+                    "Emergency response protocols and algorithms",
+                    "Your work schedule",
+                    "Traffic conditions"
                 ],
                 "correctAnswer": 1
+            }
+        },
+        {
+            "id": "step4",
+            "title": "Scene Management",
+            "content": {
+                "type": "multiple-choice",
+                "question": "At this playground incident, what's your immediate action after ensuring personal safety?",
+                "imagePath": "images/scene.png",
+                "options": [
+                    "Take photos of the scene",
+                    "Interview bystanders",
+                    "Assess the victim and establish if they're responsive",
+                    "Set up a perimeter"
+                ],
+                "correctAnswer": 2
+            }
+        },
+        {
+            "id": "step5",
+            "title": "Response Planning",
+            "content": {
+                "type": "multiple-choice",
+                "question": "While assessing the situation, what should you be considering?",
+                "imagePath": "images/female-hmm.png",
+                "options": [
+                    "The need for additional resources and equipment",
+                    "Your dinner plans",
+                    "The weather forecast",
+                    "Your next shift schedule"
+                ],
+                "correctAnswer": 0
+            }
+        },
+        {
+            "id": "step6",
+            "title": "Documentation",
+            "content": {
+                "type": "multiple-choice",
+                "question": "What critical information should you record on your device during the incident?",
+                "imagePath": "images/female-scratch.png",
+                "options": [
+                    "Your personal notes",
+                    "Social media updates",
+                    "Vital signs and interventions performed",
+                    "Bystander contact information"
+                ],
+                "correctAnswer": 2
             }
         }
     ]
