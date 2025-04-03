@@ -5,6 +5,7 @@ export class Engine implements IEngine {
     private stepIds: string[] = [];
 
     constructor(stepIds: string[]) {
+        console.log('Engine constructor', stepIds);
         this.stepIds = stepIds;
     }
 

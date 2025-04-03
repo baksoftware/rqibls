@@ -1,9 +1,7 @@
 import React from 'react';
-import { IEngine } from '../engine/IEngine';
 import { ICourse } from '../course/ICourse';
 
 interface StartPageProps {
-    engine: IEngine;
     course: ICourse;
     onStart: () => void;
 }

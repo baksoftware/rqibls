@@ -1,24 +1,26 @@
 import React from 'react';
-import { IEngine } from '../engine/IEngine';
+import { useAppSelector } from '../store/hooks';
 import './CourseViewer.css';
 
 interface CourseStepPageProps {
-    engine: IEngine;
     currentContent: any;
     onAnswerSelect: (index: number) => void;
     onNext: () => void;
     onPrevious: () => void;
     selectedAnswer: number | null;
+    progress: number;
 }
 
 export const CourseStepPage: React.FC<CourseStepPageProps> = ({
-    engine,
     currentContent,
     onAnswerSelect,
     onNext,
     onPrevious,
     selectedAnswer,
+    progress,
 }) => {
+    const currentStepIndex = useAppSelector((state) => state.engine.currentStepIndex);
+
     return (
         <div className="course-viewer">
             <h2>{currentContent.question}</h2>
@@ -34,7 +36,7 @@ export const CourseStepPage: React.FC<CourseStepPageProps> = ({
                 ))}
             </div>
             <div className="navigation">
-                <button onClick={onPrevious} disabled={!engine.previousStep()}>
+                <button onClick={onPrevious} disabled={currentStepIndex === 0}>
                     Previous
                 </button>
                 <button onClick={onNext} disabled={selectedAnswer === null}>
@@ -42,7 +44,7 @@ export const CourseStepPage: React.FC<CourseStepPageProps> = ({
                 </button>
             </div>
             <div className="progress">
-                Progress: {engine.getProgress()}%
+                Progress: {progress}%
             </div>
         </div>
     );
