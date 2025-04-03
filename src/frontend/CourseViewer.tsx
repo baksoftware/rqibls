@@ -11,6 +11,7 @@ export const CourseViewer: React.FC<CourseViewerProps> = ({ engine, course }) =>
     const [currentContent, setCurrentContent] = useState<any>(null);
     const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
     const [showFeedback, setShowFeedback] = useState<boolean>(false);
+    const [correctAnswers, setCorrectAnswers] = useState<number>(0);
 
     useEffect(() => {
         const stepId = engine.getCurrentStep();
@@ -23,6 +24,9 @@ export const CourseViewer: React.FC<CourseViewerProps> = ({ engine, course }) =>
     const handleAnswerSelect = (index: number) => {
         setSelectedAnswer(index);
         setShowFeedback(true);
+        if (index === currentContent.correctAnswer) {
+            setCorrectAnswers(prev => prev + 1);
+        }
     };
 
     const handleNext = () => {
@@ -47,6 +51,18 @@ export const CourseViewer: React.FC<CourseViewerProps> = ({ engine, course }) =>
 
     if (!currentContent) {
         return <div>Loading...</div>;
+    }
+
+    if (engine.isCompleted()) {
+        return (
+            <div className="course-viewer">
+                <h2>Course Completed!</h2>
+                <div className="completion-summary">
+                    <p>You answered {correctAnswers} out of {course.getTotalSteps()} questions correctly.</p>
+                    <p>That's {Math.round((correctAnswers / course.getTotalSteps()) * 100)}% correct!</p>
+                </div>
+            </div>
+        );
     }
 
     return (

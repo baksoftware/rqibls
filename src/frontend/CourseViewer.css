@@ -65,4 +65,23 @@
     margin-top: 20px;
     text-align: center;
     color: #666;
+}
+
+.completion-summary {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.completion-summary p {
+    margin: 10px 0;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.completion-summary p:last-child {
+    font-weight: bold;
+    color: #007bff;
 } 
