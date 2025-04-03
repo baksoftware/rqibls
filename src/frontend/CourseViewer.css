@@ -84,4 +84,37 @@
 .completion-summary p:last-child {
     font-weight: bold;
     color: #007bff;
+}
+
+.answer-history {
+    margin-top: 30px;
+    text-align: left;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.answer-history h3 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.answer-history ul {
+    list-style: none;
+    padding: 0;
+}
+
+.answer-history li {
+    padding: 10px 15px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+}
+
+.answer-history li.correct {
+    border-left: 4px solid #4CAF50;
+}
+
+.answer-history li.incorrect {
+    border-left: 4px solid #f44336;
 } 

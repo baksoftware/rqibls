@@ -12,12 +12,17 @@ interface CourseViewerProps {
 
 type Page = 'start' | 'course' | 'completion';
 
+interface AnswerHistory {
+    stepId: string;
+    selectedAnswer: number;
+    isCorrect: boolean;
+}
+
 export const CourseViewer: React.FC<CourseViewerProps> = ({ engine, course }) => {
     const [currentPage, setCurrentPage] = useState<Page>('start');
     const [currentContent, setCurrentContent] = useState<any>(null);
     const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
-    const [showFeedback, setShowFeedback] = useState<boolean>(false);
-    const [correctAnswers, setCorrectAnswers] = useState<number>(0);
+    const [answerHistory, setAnswerHistory] = useState<AnswerHistory[]>([]);
 
     useEffect(() => {
         if (currentPage === 'course') {
@@ -25,7 +30,6 @@ export const CourseViewer: React.FC<CourseViewerProps> = ({ engine, course }) =>
             const content = course.getStepContent(stepId);
             setCurrentContent(content);
             setSelectedAnswer(null);
-            setShowFeedback(false);
         }
     }, [engine, course, currentPage]);
 
@@ -35,19 +39,20 @@ export const CourseViewer: React.FC<CourseViewerProps> = ({ engine, course }) =>
 
     const handleAnswerSelect = (index: number) => {
         setSelectedAnswer(index);
-        setShowFeedback(true);
-        if (index === currentContent.correctAnswer) {
-            setCorrectAnswers(prev => prev + 1);
-        }
     };
 
     const handleNext = () => {
+        if (selectedAnswer !== null) {
+            const stepId = engine.getCurrentStep();
+            const isCorrect = selectedAnswer === currentContent.correctAnswer;
+            setAnswerHistory(prev => [...prev, { stepId, selectedAnswer, isCorrect }]);
+        }
+
         if (engine.nextStep()) {
             const stepId = engine.getCurrentStep();
             const content = course.getStepContent(stepId);
             setCurrentContent(content);
             setSelectedAnswer(null);
-            setShowFeedback(false);
         } else {
             setCurrentPage('completion');
         }
@@ -59,10 +64,10 @@ export const CourseViewer: React.FC<CourseViewerProps> = ({ engine, course }) =>
             const content = course.getStepContent(stepId);
             setCurrentContent(content);
             setSelectedAnswer(null);
-            setShowFeedback(false);
         }
     };
 
+    console.log(`currentPage: ${currentPage}`);
     switch (currentPage) {
         case 'start':
             return <StartPage engine={engine} course={course} onStart={handleStart} />;
@@ -73,17 +78,15 @@ export const CourseViewer: React.FC<CourseViewerProps> = ({ engine, course }) =>
             return (
                 <CourseStepPage
                     engine={engine}
-                    course={course}
                     currentContent={currentContent}
                     onAnswerSelect={handleAnswerSelect}
                     onNext={handleNext}
                     onPrevious={handlePrevious}
                     selectedAnswer={selectedAnswer}
-                    showFeedback={showFeedback}
                 />
             );
         case 'completion':
-            return <CompletionPage course={course} correctAnswers={correctAnswers} />;
+            return <CompletionPage course={course} answerHistory={answerHistory} />;
         default:
             return null;
     }
