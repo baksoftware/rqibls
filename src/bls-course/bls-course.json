@@ -1,0 +1,36 @@
+{
+    "title": "Basic Life Support Course",
+    "description": "A simple BLS course with multiple choice questions",
+    "steps": [
+        {
+            "id": "step1",
+            "title": "Chest Compressions",
+            "content": {
+                "type": "multiple-choice",
+                "question": "What is the correct rate for chest compressions in adult CPR?",
+                "options": [
+                    "60-80 compressions per minute",
+                    "100-120 compressions per minute",
+                    "140-160 compressions per minute",
+                    "180-200 compressions per minute"
+                ],
+                "correctAnswer": 1
+            }
+        },
+        {
+            "id": "step2",
+            "title": "Rescue Breaths",
+            "content": {
+                "type": "multiple-choice",
+                "question": "How many rescue breaths should be given after 30 chest compressions?",
+                "options": [
+                    "1 breath",
+                    "2 breaths",
+                    "3 breaths",
+                    "4 breaths"
+                ],
+                "correctAnswer": 1
+            }
+        }
+    ]
+} 

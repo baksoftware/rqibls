@@ -40,3 +40,15 @@
 .read-the-docs {
   color: #888;
 }
+
+.app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.app h1 {
+  color: #333;
+  margin-bottom: 2rem;
+}
