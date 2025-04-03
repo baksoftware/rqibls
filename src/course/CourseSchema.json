@@ -1,0 +1,36 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "required": ["title", "steps"],
+    "properties": {
+        "title": {
+            "type": "string",
+            "description": "The title of the course"
+        },
+        "description": {
+            "type": "string",
+            "description": "A description of the course"
+        },
+        "steps": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": ["id", "title", "content"],
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "Unique identifier for the step"
+                    },
+                    "title": {
+                        "type": "string",
+                        "description": "Title of the step"
+                    },
+                    "content": {
+                        "type": "object",
+                        "description": "The content to display for this step"
+                    }
+                }
+            }
+        }
+    }
+} 
