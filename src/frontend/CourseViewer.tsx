@@ -53,18 +53,26 @@ export const CourseViewer: React.FC<CourseViewerProps> = ({
     };
 
     const handleSelfAssessment = (assessment: string) => {
+        console.log('Setting self-assessment:', assessment);
         setCurrentSelfAssessment(assessment);
     };
 
-    const handleNext = () => {
+    const handleNext = (assessment?: string) => {
         if (selectedAnswer !== null) {
             const isCorrect = selectedAnswer === currentContent.correctAnswer;
+            console.log('Adding to answer history:', {
+                stepId: currentStep,
+                selectedAnswer,
+                isCorrect,
+                selfAssessment: assessment || currentSelfAssessment
+            });
             setAnswerHistory(prev => [...prev, { 
                 stepId: currentStep, 
                 selectedAnswer, 
                 isCorrect,
-                selfAssessment: currentSelfAssessment
+                selfAssessment: assessment || currentSelfAssessment
             }]);
+            setCurrentSelfAssessment(null);
         }
 
         dispatch(nextStep());

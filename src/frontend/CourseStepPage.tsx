@@ -5,7 +5,7 @@ import './CourseViewer.css';
 interface CourseStepPageProps {
     currentContent: any;
     onAnswerSelect: (index: number) => void;
-    onNext: () => void;
+    onNext: (assessment: string) => void;
     onPrevious: () => void;
     selectedAnswer: number | null;
     progress: number;
@@ -27,6 +27,8 @@ export const CourseStepPage: React.FC<CourseStepPageProps> = ({
     const handleSelfAssessment = (assessment: string) => {
         setSelfAssessment(assessment);
         onSelfAssessment(assessment);
+        onNext(assessment);
+        setSelfAssessment(null);
     };
 
     return (
@@ -58,36 +60,34 @@ export const CourseStepPage: React.FC<CourseStepPageProps> = ({
                     <button 
                         className={`assessment-button ${selfAssessment === 'know' ? 'selected' : ''}`}
                         onClick={() => handleSelfAssessment('know')}
+                        disabled={selectedAnswer === null}
                     >
                         I know it
                     </button>
                     <button 
                         className={`assessment-button ${selfAssessment === 'think' ? 'selected' : ''}`}
                         onClick={() => handleSelfAssessment('think')}
+                        disabled={selectedAnswer === null}
                     >
                         Think I know it
                     </button>
                     <button 
                         className={`assessment-button ${selfAssessment === 'unsure' ? 'selected' : ''}`}
                         onClick={() => handleSelfAssessment('unsure')}
+                        disabled={selectedAnswer === null}
                     >
                         Not sure
                     </button>
                     <button 
                         className={`assessment-button ${selfAssessment === 'noidea' ? 'selected' : ''}`}
                         onClick={() => handleSelfAssessment('noidea')}
+                        disabled={selectedAnswer === null}
                     >
                         No idea
                     </button>
                 </div>
             </div>
             <div className="navigation">
-                <button onClick={onPrevious} disabled={currentStepIndex === 0}>
-                    Previous
-                </button>
-                <button onClick={onNext} disabled={selectedAnswer === null}>
-                    Next
-                </button>
             </div>
             <div className="progress">
                 Progress: {progress}%

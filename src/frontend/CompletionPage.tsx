@@ -33,6 +33,9 @@ export const CompletionPage: React.FC<CompletionPageProps> = ({ course, answerHi
     const correctAnswers = answerHistory.filter(answer => answer.isCorrect).length;
     const totalSteps = course.getTotalSteps();
 
+    // Debug logging
+    console.log('Answer History:', answerHistory);
+
     return (
         <div className="completion-page">
             <h2>Course Completed!</h2>
@@ -43,16 +46,19 @@ export const CompletionPage: React.FC<CompletionPageProps> = ({ course, answerHi
             <div className="answer-history">
                 <h3>Your Answers and Self-Assessment:</h3>
                 <ul>
-                    {answerHistory.map((answer, index) => (
-                        <li key={answer.stepId} className={answer.isCorrect ? 'correct' : 'incorrect'}>
-                            <div className="answer-details">
-                                <span>Question {index + 1}: {answer.isCorrect ? '✓ Correct' : '✗ Incorrect'}</span>
-                                <span className="self-assessment-badge">
-                                    Self-assessment: {getAssessmentText(answer.selfAssessment)}
-                                </span>
-                            </div>
-                        </li>
-                    ))}
+                    {answerHistory.map((answer, index) => {
+                        console.log(`Answer ${index + 1} self-assessment:`, answer.selfAssessment);
+                        return (
+                            <li key={answer.stepId} className={answer.isCorrect ? 'correct' : 'incorrect'}>
+                                <div className="answer-details">
+                                    <span>Question {index + 1}: {answer.isCorrect ? '✓ Correct' : '✗ Incorrect'}</span>
+                                    <span className="self-assessment-badge">
+                                        Self-assessment: {getAssessmentText(answer.selfAssessment)}
+                                    </span>
+                                </div>
+                            </li>
+                        );
+                    })}
                 </ul>
             </div>
         </div>
