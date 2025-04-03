@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useAppSelector } from '../store/hooks';
 import './CourseViewer.css';
 
@@ -9,6 +9,7 @@ interface CourseStepPageProps {
     onPrevious: () => void;
     selectedAnswer: number | null;
     progress: number;
+    onSelfAssessment: (assessment: string) => void;
 }
 
 export const CourseStepPage: React.FC<CourseStepPageProps> = ({
@@ -18,8 +19,15 @@ export const CourseStepPage: React.FC<CourseStepPageProps> = ({
     onPrevious,
     selectedAnswer,
     progress,
+    onSelfAssessment,
 }) => {
     const currentStepIndex = useAppSelector((state) => state.engine.currentStepIndex);
+    const [selfAssessment, setSelfAssessment] = useState<string | null>(null);
+
+    const handleSelfAssessment = (assessment: string) => {
+        setSelfAssessment(assessment);
+        onSelfAssessment(assessment);
+    };
 
     return (
         <div className="course-viewer">
@@ -34,6 +42,35 @@ export const CourseStepPage: React.FC<CourseStepPageProps> = ({
                         {option}
                     </button>
                 ))}
+            </div>
+            <div className="self-assessment">
+                <h3>How well do you know this?</h3>
+                <div className="assessment-buttons">
+                    <button 
+                        className={`assessment-button ${selfAssessment === 'know' ? 'selected' : ''}`}
+                        onClick={() => handleSelfAssessment('know')}
+                    >
+                        I know it
+                    </button>
+                    <button 
+                        className={`assessment-button ${selfAssessment === 'think' ? 'selected' : ''}`}
+                        onClick={() => handleSelfAssessment('think')}
+                    >
+                        Think I know it
+                    </button>
+                    <button 
+                        className={`assessment-button ${selfAssessment === 'unsure' ? 'selected' : ''}`}
+                        onClick={() => handleSelfAssessment('unsure')}
+                    >
+                        Not sure
+                    </button>
+                    <button 
+                        className={`assessment-button ${selfAssessment === 'noidea' ? 'selected' : ''}`}
+                        onClick={() => handleSelfAssessment('noidea')}
+                    >
+                        No idea
+                    </button>
+                </div>
             </div>
             <div className="navigation">
                 <button onClick={onPrevious} disabled={currentStepIndex === 0}>

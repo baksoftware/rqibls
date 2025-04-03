@@ -117,4 +117,57 @@
 
 .answer-history li.incorrect {
     border-left: 4px solid #f44336;
+}
+
+.self-assessment {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+}
+
+.self-assessment h3 {
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.assessment-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.assessment-button {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.9em;
+}
+
+.assessment-button:hover {
+    background-color: #f0f0f0;
+}
+
+.assessment-button.selected {
+    background-color: #e0e0e0;
+    border-color: #999;
+    font-weight: bold;
+}
+
+.answer-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.self-assessment-badge {
+    background-color: #e0e0e0;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.9em;
+    color: #555;
 } 

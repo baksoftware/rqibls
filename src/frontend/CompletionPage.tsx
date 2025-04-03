@@ -6,12 +6,28 @@ interface AnswerHistory {
     stepId: string;
     selectedAnswer: number;
     isCorrect: boolean;
+    selfAssessment: string | null;
 }
 
 interface CompletionPageProps {
     course: ICourse;
     answerHistory: AnswerHistory[];
 }
+
+const getAssessmentText = (assessment: string | null): string => {
+    switch (assessment) {
+        case 'know':
+            return 'I know it';
+        case 'think':
+            return 'Think I know it';
+        case 'unsure':
+            return 'Not sure';
+        case 'noidea':
+            return 'No idea';
+        default:
+            return 'No assessment';
+    }
+};
 
 export const CompletionPage: React.FC<CompletionPageProps> = ({ course, answerHistory }) => {
     const correctAnswers = answerHistory.filter(answer => answer.isCorrect).length;
@@ -25,11 +41,16 @@ export const CompletionPage: React.FC<CompletionPageProps> = ({ course, answerHi
                 <p>That's {Math.round((correctAnswers / totalSteps) * 100)}% correct!</p>
             </div>
             <div className="answer-history">
-                <h3>Your Answers:</h3>
+                <h3>Your Answers and Self-Assessment:</h3>
                 <ul>
                     {answerHistory.map((answer, index) => (
                         <li key={answer.stepId} className={answer.isCorrect ? 'correct' : 'incorrect'}>
-                            Question {index + 1}: {answer.isCorrect ? '✓ Correct' : '✗ Incorrect'}
+                            <div className="answer-details">
+                                <span>Question {index + 1}: {answer.isCorrect ? '✓ Correct' : '✗ Incorrect'}</span>
+                                <span className="self-assessment-badge">
+                                    Self-assessment: {getAssessmentText(answer.selfAssessment)}
+                                </span>
+                            </div>
                         </li>
                     ))}
                 </ul>

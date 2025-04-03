@@ -19,6 +19,7 @@ interface AnswerHistory {
     stepId: string;
     selectedAnswer: number;
     isCorrect: boolean;
+    selfAssessment: string | null;
 }
 
 export const CourseViewer: React.FC<CourseViewerProps> = ({ 
@@ -32,12 +33,14 @@ export const CourseViewer: React.FC<CourseViewerProps> = ({
     const [currentContent, setCurrentContent] = useState<any>(null);
     const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
     const [answerHistory, setAnswerHistory] = useState<AnswerHistory[]>([]);
+    const [currentSelfAssessment, setCurrentSelfAssessment] = useState<string | null>(null);
 
     useEffect(() => {
         if (currentPage === 'course') {
             const content = course.getStepContent(currentStep);
             setCurrentContent(content);
             setSelectedAnswer(null);
+            setCurrentSelfAssessment(null);
         }
     }, [course, currentPage, currentStep]);
 
@@ -49,10 +52,19 @@ export const CourseViewer: React.FC<CourseViewerProps> = ({
         setSelectedAnswer(index);
     };
 
+    const handleSelfAssessment = (assessment: string) => {
+        setCurrentSelfAssessment(assessment);
+    };
+
     const handleNext = () => {
         if (selectedAnswer !== null) {
             const isCorrect = selectedAnswer === currentContent.correctAnswer;
-            setAnswerHistory(prev => [...prev, { stepId: currentStep, selectedAnswer, isCorrect }]);
+            setAnswerHistory(prev => [...prev, { 
+                stepId: currentStep, 
+                selectedAnswer, 
+                isCorrect,
+                selfAssessment: currentSelfAssessment
+            }]);
         }
 
         dispatch(nextStep());
@@ -80,6 +92,7 @@ export const CourseViewer: React.FC<CourseViewerProps> = ({
                     onPrevious={handlePrevious}
                     selectedAnswer={selectedAnswer}
                     progress={progress}
+                    onSelfAssessment={handleSelfAssessment}
                 />
             );
         case 'completion':
