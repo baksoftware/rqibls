@@ -53,7 +53,9 @@ export const CourseViewer: React.FC<CourseViewerProps> = ({ engine, course }) =>
         return <div>Loading...</div>;
     }
 
-    if (engine.isCompleted()) {
+    const isCompleted = engine.isCompleted();
+    console.log(`isCompleted: ${isCompleted}`);
+    if (isCompleted) {
         return (
             <div className="course-viewer">
                 <h2>Course Completed!</h2>

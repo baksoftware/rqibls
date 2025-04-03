@@ -29,6 +29,7 @@ export class Engine implements IEngine {
     }
 
     isCompleted(): boolean {
+        if (this.stepIds.length === 0) return false;
         return this.currentStepIndex === this.stepIds.length - 1;
     }
 
