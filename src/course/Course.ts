@@ -1,6 +1,6 @@
 import { ICourse } from './ICourse';
 
-interface CourseData {
+export interface CourseData {
     title: string;
     description?: string;
     steps: Array<{
@@ -11,10 +11,23 @@ interface CourseData {
 }
 
 export class Course implements ICourse {
+    private static instance: Course | null = null;
     private courseData: CourseData | null = null;
     private stepIds: string[] = [];
 
+    private constructor() {}
+
+    public static getInstance(): Course {
+        if (!Course.instance) {
+            Course.instance = new Course();
+        }
+        return Course.instance;
+    }
+
     async loadCourse(path: string): Promise<void> {
+        if (this.courseData) {
+            return; // Already loaded
+        }
         try {
             const response = await fetch(path);
             const data = await response.json();

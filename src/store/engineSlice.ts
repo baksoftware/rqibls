@@ -3,7 +3,6 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 interface EngineState {
   currentStepIndex: number;
   stepIds: string[];
-  course: any | null;
   isLoading: boolean;
   error: string | null;
 }
@@ -11,7 +10,6 @@ interface EngineState {
 const initialState: EngineState = {
   currentStepIndex: 0,
   stepIds: [],
-  course: null,
   isLoading: false,
   error: null,
 };
@@ -36,9 +34,6 @@ const engineSlice = createSlice({
         state.currentStepIndex--;
       }
     },
-    setCourse: (state, action: PayloadAction<any>) => {
-      state.course = action.payload;
-    },
     setLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;
     },
@@ -53,7 +48,6 @@ export const {
   setCurrentStepIndex, 
   nextStep, 
   previousStep, 
-  setCourse, 
   setLoading, 
   setError 
 } = engineSlice.actions;

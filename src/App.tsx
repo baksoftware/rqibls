@@ -6,7 +6,6 @@ import { store } from './store/store';
 import { useAppDispatch, useAppSelector } from './store/hooks';
 import { 
   setStepIds, 
-  setCourse, 
   setLoading, 
   setError,
   selectCurrentStep,
@@ -17,7 +16,7 @@ import './App.css';
 
 function AppContent() {
   const dispatch = useAppDispatch();
-  const { course, isLoading, error } = useAppSelector((state) => state.engine);
+  const { isLoading, error } = useAppSelector((state) => state.engine);
   const currentStep = useAppSelector(selectCurrentStep);
   const isCompleted = useAppSelector(selectIsCompleted);
   const progress = useAppSelector(selectProgress);
@@ -26,11 +25,10 @@ function AppContent() {
     const loadCourse = async () => {
       try {
         dispatch(setLoading(true));
-        const newCourse = new Course();
-        await newCourse.loadCourse('/src/bls-course/bls-course.json');
-        const stepIds = newCourse.getStepIds();
+        const course = Course.getInstance();
+        await course.loadCourse('/src/bls-course/bls-course.json');
+        const stepIds = course.getStepIds();
         dispatch(setStepIds(stepIds));
-        dispatch(setCourse(newCourse));
       } catch (err) {
         dispatch(setError(err instanceof Error ? err.message : 'Failed to load course'));
       } finally {
@@ -38,10 +36,8 @@ function AppContent() {
       }
     };
 
-    if (!course) {
-      loadCourse();
-    }
-  }, [dispatch, course]);
+    loadCourse();
+  }, [dispatch]);
 
   if (isLoading) {
     return <div>Loading course...</div>;
@@ -51,9 +47,7 @@ function AppContent() {
     return <div>Error: {error}</div>;
   }
 
-  if (!course) {
-    return null;
-  }
+  const course = Course.getInstance();
 
   return (
     <div className="app">
