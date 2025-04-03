@@ -33,7 +33,9 @@ export const CourseStepPage: React.FC<CourseStepPageProps> = ({
         <div className="course-viewer">
             <div className="question-container">
                 <div className="question-image">
-                    <img src={`/images/${currentContent.image}`} alt="Question illustration" />
+                    {currentContent.imagePath && (
+                        <img src={`/src/bls-course/${currentContent.imagePath}`} alt="Question illustration" />
+                    )}
                 </div>
                 <div className="question-content">
                     <h2>{currentContent.question}</h2>

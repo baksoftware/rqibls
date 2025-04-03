@@ -8,6 +8,7 @@
             "content": {
                 "type": "multiple-choice",
                 "question": "What is the correct rate for chest compressions in adult CPR?",
+                "imagePath": "images/image-single-rescuer-female-standing.png",
                 "options": [
                     "60-80 compressions per minute",
                     "100-120 compressions per minute",
@@ -23,6 +24,7 @@
             "content": {
                 "type": "multiple-choice",
                 "question": "How many rescue breaths should be given after 30 chest compressions?",
+                "imagePath": "images/image-single-rescuer-male-standing.png",
                 "options": [
                     "1 breath",
                     "2 breaths",
