@@ -28,6 +28,7 @@ The application consist of the following parts
 - has all source files in the `/src/frontend` folder
 - show one page at a time
 - ask the Engine what next page to show, through the Engine interface
+- there must be NO business logic in the frontend, all functionality with respect to which course step to take must be decided through the [IEngine.ts](mdc:src/engine/IEngine.ts) interface
 
 # Course
 - has all source files in the `/src/course` folder

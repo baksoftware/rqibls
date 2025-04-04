@@ -1,0 +1,19 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Application functionality
+
+## Repeat
+When the user has reached the completion page and has NOT completed with 100% score, then the user need to go through all steps again, in sequence.
+
+Those of the steps which the user failed have to be answered again.
+
+Those that was completed there will just be a (blue) next button, and the correct answer highlighted.
+
+After all failed has been answered again, the score must be calculated again on the completion page.
+
+The engine must do the calculation of the score and which step to do next.
+
+
