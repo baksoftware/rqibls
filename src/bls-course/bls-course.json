@@ -16,7 +16,7 @@
             "title": "Initial Assessment",
             "content": {
                 "type": "multiple-choice",
-                "question": "The child is unresponsive after you tap his shoulders and shout, \"Are you OK?\" He could be in cardiac arrest.<br/>What is your next step?",
+                "question": "The child is unresponsive after you tap his shoulders and shout, \"Are you OK?\" He could be in cardiac arrest.\n\nWhat is your next step?",
                 "imagePath": "images/female-scratch.png",
                 "options": [
                     "For 5 to 10 seconds, look for no breathing or only gasping while simultaneously checking the carotid pulse",
@@ -40,55 +40,7 @@
                     "2 breaths every 5 to 6 seconds, or about 20 to 24 breaths per minute",
                     "1 breath every 2 to 3 seconds, or about 20 to 30 breaths per minute"
                 ],
-                "correctAnswer": 1
-            }
-        },
-        {
-            "id": "step4",
-            "title": "CPR Assessment",
-            "content": {
-                "type": "multiple-choice",
-                "question": "You check the child's pulse after 2 minutes of providing rescue breaths and cannot feel a pulse. You immediately begin CPR. After performing CPR for 2 more minutes, the child still does not have a pulse and you are still alone.\n\nWhat is your next step?",
-                "imagePath": "images/female-thinking.png",
-                "options": [
-                    "Continue rescue breaths only",
-                    "Wait for advanced life support providers to arrive",
-                    "Continue compressions",
-                    "Get and use an AED"
-                ],
                 "correctAnswer": 3
-            }
-        },
-        {
-            "id": "step5",
-            "title": "AED Usage",
-            "content": {
-                "type": "multiple-choice",
-                "question": "After turning on the AED, you follow the prompts. You know to use child pads for infants and for children younger than 8 years, but the pediatric pads are unavailable.\n\nWhat should you do?",
-                "imagePath": "images/female-hmm.png",
-                "options": [
-                    "Resume chest compressions until pediatric pads become available",
-                    "Use the adult pads",
-                    "Turn off the AED",
-                    "Wait for advanced life support providers to arrive"
-                ],
-                "correctAnswer": 1
-            }
-        },
-        {
-            "id": "step6",
-            "title": "CPR Ratio",
-            "content": {
-                "type": "multiple-choice",
-                "question": "You are still performing CPR as a single rescuer. The AED detects a shockable rhythm and advises a shock.\n\nAfter delivering 1 shock, you immediately resume CPR with what ratio of compressions to breaths?",
-                "imagePath": "images/female-thinking.png",
-                "options": [
-                    "Cycles of 30 compressions and 1 breath",
-                    "Cycles of 30 compressions and 2 breaths",
-                    "Cycles of 15 compressions and 1 breath",
-                    "Cycles of 15 compressions and 2 breaths"
-                ],
-                "correctAnswer": 1
             }
         }
     ]
